@@ -16,7 +16,60 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once plugin_dir_path( __FILE__ ) . 'includes/redirects.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/custom-login.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/access_logging.php';
+require_once plugin_dir_path( __FILE__ ) . 'admin/logs.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/logging.php';
+
+register_activation_hook( __FILE__, 'cdb_login_activate' );
+register_uninstall_hook( __FILE__, 'cdb_login_uninstall' );
+
+function cdb_login_activate() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'cdb_login_access_log';
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+        user_id BIGINT UNSIGNED NOT NULL,
+        username varchar(60) NOT NULL,
+        user_ip varchar(100) NOT NULL,
+        access_time datetime NOT NULL,
+        PRIMARY KEY  (id),
+        KEY user_id (user_id)
+    ) $charset_collate;";
+
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+    dbDelta( $sql );
+}
+
+function cdb_login_uninstall() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'cdb_login_access_log';
+    $wpdb->query( "DROP TABLE IF EXISTS $table_name" );
+
+    $options = [
+        'cdb_login_background_color',
+        'cdb_login_background_image',
+        'cdb_login_button_color',
+        'cdb_login_button_hover_color',
+        'cdb_login_field_focus_color',
+        'cdb_login_border_radius',
+        'cdb_login_button_text',
+        'cdb_login_limit_attempts',
+        'cdb_login_redirect_message',
+        'cdb_login_tracking_role',
+        'cdb_login_text_color',
+        'cdb_login_link_color',
+        'cdb_login_link_hover_color',
+        'cdb_login_eye_icon_color',
+        'cdb_login_eye_icon_hover_color',
+        'cdb_login_eye_icon_url',
+        'cdb_login_font_family'
+    ];
+
+    foreach ( $options as $option ) {
+        delete_option( $option );
+    }
+}
 
 /**
  * Obtiene la URL de una página por su título con caché en transients

@@ -1,39 +1,18 @@
-Descripción
+# CdB Login
 
-CdB_Login es un plugin de WordPress diseñado para gestionar el acceso a la plataforma, redirigir visitantes al login y personalizar la experiencia según roles y permisos.
+CdB Login es un plugin de WordPress que restringe el acceso de los visitantes no autenticados y personaliza la pantalla de inicio de sesión. También almacena en una tabla propia los accesos de los usuarios para su posterior consulta.
 
+## Instalación
+1. Copia la carpeta del plugin en `wp-content/plugins`.
+2. Actívalo desde el panel de administración de WordPress. Durante la activación se creará automáticamente la tabla `cdb_login_access_log`.
+3. Accede a **Ajustes → CdB Login** para configurar colores, textos y opciones avanzadas.
 
-Instalación
+## Características
+- Redirección automática al formulario de login salvo en páginas públicas.
+- Personalización del formulario con colores y logo.
+- Registro de accesos filtrado por rol de usuario.
+- Página de administración para revisar y borrar registros.
 
-Descarga el plugin y súbelo a la carpeta wp-content/plugins.
+## Desinstalación
+Al desinstalar el plugin se elimina la tabla de registros y todas las opciones guardadas. Puedes hacerlo desde el listado de plugins en WordPress.
 
-Activa el plugin desde el panel de administración de WordPress.
-
-Configura los ajustes en Ajustes -> CdB_Login.
-
-
-Características
-
-Redirección de usuarios según su rol.
-
-Personalización del formulario de login.
-
-Registro de accesos y actividad.
-
-Seguridad contra intentos de acceso no autorizados.
-
-
-Configuración
-
-Puedes ajustar las opciones del plugin desde el panel de administración. Algunas configuraciones clave incluyen:
-
-Definir la página de redirección por rol.
-
-Habilitar/deshabilitar el registro de accesos.
-
-Personalizar la estética del login.
-
-
-Desinstalación
-
-Para eliminar completamente el plugin y sus datos, usa la opción de desinstalación en WordPress o asegúrate de ejecutar uninstall.php.
