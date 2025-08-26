@@ -8,7 +8,7 @@ add_action( 'admin_menu', function() {
         'cdb-login-settings',
         'cdb_login_render_settings_page',
         'dashicons-lock',
-        100
+        3
     );
 });
 
