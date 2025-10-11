@@ -1,10 +1,14 @@
 <?php
 /**
  * Plugin Name: CdB_login
+ * Plugin URI:  https://proyectocdb.es
  * Description: Plugin para redirigir a los visitantes al login y personalizar accesos según roles.
- * Version: 1.0.0
- * Author: CdB_
- * Author URI: https://proyectocdb.es
+ * Version:     1.0.0
+ * Author:      CdB_
+ * Author URI:  https://proyectocdb.es
+ * License:     GPL2
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: cdb-login
  */
 
 // Evita el acceso directo al archivo
